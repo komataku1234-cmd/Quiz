@@ -21,8 +21,8 @@ React 19 / TypeScript / Vite / MUI / Emotion / React Hook Form + Yup（フォー
 ## セットアップ
 
 ```bash
-git clone git@github.com:komataku1234-cmd/default.git
-cd default
+git clone git@github.com:komataku1234-cmd/Quiz.git
+cd Quiz
 pnpm install
 pnpm dev
 ```
@@ -62,9 +62,6 @@ src/
 └── docs/                      … 要件定義書・設計書
 ```
 
-## チーム開発を始める前にやること
+## 状態管理
 
-- [ ] GitHubリポジトリにメンバーをCollaboratorとして招待（Settings → Collaborators）
-- [ ] `main`ブランチを保護し、直接pushを禁止してPRを必須化（Settings → Branches）
-- [ ] 各メンバーがcloneして`pnpm install`できることを確認
-- [ ] 必要であればCI（GitHub Actions）で`pnpm lint` / `pnpm build`を自動実行するよう設定
+クイズの進行（`idle → playing → answered → finished`）は `useReducer` で一元管理しています。回答・時間切れ・次へ・リスタートといった複数の状態が同時に変化するため、更新ロジックを `quizReducer` に集約しています。詳細は設計書の「状態機械の設計」を参照してください。
